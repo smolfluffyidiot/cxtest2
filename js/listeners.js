@@ -3266,78 +3266,17 @@ window.exitCollapseMode = function() {
     const decisionBtn = document.getElementById('decision-btn');
     let decisionPanel = document.getElementById('decision-panel');
 
-    // Initialize decision panel if it doesn't exist in HTML
-    if (!decisionPanel && decisionBtn) {
-        decisionPanel = document.createElement('div');
-        decisionPanel.id = 'decision-panel';
-        decisionPanel.className = 'decision-panel-popover';
-
-        decisionPanel.innerHTML = `
-            <div class="decision-panel-header">
-                <span style="font-weight:600;color:var(--text-primary);">回答问题</span>
-                <button id="decision-panel-close" style="background:none;border:none;cursor:pointer;color:var(--text-secondary);font-size:14px;">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-
-            <div class="decision-panel-content">
-                <div style="margin-bottom:12px;">
-                    <label style="font-size:12px;color:var(--text-secondary);display:block;margin-bottom:6px;">
-                        输入问题
-                    </label>
-                    <input
-                        type="text"
-                        id="decision-question-input"
-                        placeholder="问一个问题..."
-                        style="width:100%;padding:8px 10px;border:1px solid var(--border-color);border-radius:8px;background:var(--secondary-bg);color:var(--text-primary);font-size:13px;"
-                    >
-                </div>
-
-                <div style="margin-bottom:12px;">
-                    <label style="font-size:12px;color:var(--text-secondary);display:block;margin-bottom:6px;">
-                        选项
-                    </label>
-                    <input
-                        type="text"
-                        id="decision-options-input"
-                        placeholder="选项1,选项2,选项3..."
-                        style="width:100%;padding:8px 10px;border:1px solid var(--border-color);border-radius:8px;background:var(--secondary-bg);color:var(--text-primary);font-size:13px;"
-                    >
-                </div>
-
-                <button
-                    id="decision-send-btn"
-                    style="width:100%;padding:10px;background:var(--accent-color);color:#fff;border:none;border-radius:8px;cursor:pointer;font-weight:600;font-size:13px;margin-top:8px;"
-                >
-                    发送
-                </button>
-            </div>
-        `;
-
-        // Insert before send button
-        const inputButtons = document.querySelector('.input-buttons');
-        if (inputButtons) {
-            const sendBtn = inputButtons.querySelector('.send-btn');
-            if (sendBtn) {
-                inputButtons.insertBefore(decisionPanel, sendBtn);
-            } else {
-                inputButtons.appendChild(decisionPanel);
-            }
-        }
-    }
-
     // Toggle panel
     if (decisionBtn && decisionPanel) {
         decisionBtn.addEventListener('click', function(e) {
             e.stopPropagation();
 
-            // Close sticker picker if open
-            const stickerPicker = document.getElementById('user-sticker-picker');
-            if (stickerPicker) {
-                stickerPicker.classList.remove('active');
+            const sticker = document.getElementById("user-sticker-picker");
+            if (sticker) {
+                sticker.classList.remove("active");
             }
-
-            decisionPanel.classList.toggle('active');
+        
+            decisionPanel.classList.toggle("active");
         });
 
         // Close button
@@ -3400,17 +3339,15 @@ window.exitCollapseMode = function() {
     }
 
     // Close when clicking outside
-    document.addEventListener('click', function(e) {
-        if (
-            decisionPanel &&
-            decisionPanel.classList.contains('active') &&
-            !decisionPanel.contains(e.target) &&
-            decisionBtn &&
-            !decisionBtn.contains(e.target)
-        ) {
-            decisionPanel.classList.remove('active');
-        }
-    });
+    document.addEventListener("click", function (e) {
+    if (
+        decisionPanel.classList.contains("active") &&
+        !decisionPanel.contains(e.target) &&
+        !decisionBtn.contains(e.target)
+    ) {
+        decisionPanel.classList.remove("active");
+    }
+});
 
     // Styles
     if (!document.getElementById('decision-panel-style')) {
