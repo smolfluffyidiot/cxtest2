@@ -5443,6 +5443,14 @@
                 margin-bottom:2px;
             }
 
+            .decision-panel-popover {
+                display: none;
+            }
+            
+            .decision-panel-popover.active {
+                display: block;
+            }
+
         #anniversary-modal .modal-content {
     padding: 0;
     background-color: var(--primary-bg);
