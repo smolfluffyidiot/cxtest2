@@ -10942,11 +10942,12 @@
 
 /* 输入区视觉重排（用 flex order，不改 DOM 顺序）
    目标布局：[📹视频通话] [输入框] [😀表情] [🖼图片] */
-#videocall-btn   { order: 1; }
-.message-input   { order: 2; }
-#combo-btn       { order: 3; }
-#attachment-btn  { order: 4; }
-.input-buttons   { order: 5; }
+#videocall-btn       { order: 1; }
+#decision-btn        { order: 2; }
+.message-input       { order: 3; }
+#combo-btn           { order: 4; }
+#attachment-btn      { order: 5; }
+.input-buttons       { order: 6; }
 
 /* attachment-btn 颜色和其他按钮一致 */
 #attachment-btn {
@@ -10954,6 +10955,15 @@
     color: var(--toolbar-btn-color, var(--text-secondary));
 }
 #attachment-btn:hover {
+    color: var(--text-primary);
+}
+
+#decision-btn{
+    background-color: var(--toolbar-btn-bg, var(--message-received-bg));
+    color: var(--toolbar-btn-color, var(--text-secondary));
+}
+
+#decision-btn:hover{
     color: var(--text-primary);
 }
 
