@@ -3337,17 +3337,25 @@ window.exitCollapseMode = function() {
             });
         }
     }
+    // Delete option handler (IMPORTANT)
+    decisionPanel.addEventListener("click", function (e) {
+        const btn = e.target.closest(".delete-option-btn");
+        if (!btn) return;
+    
+        e.stopPropagation(); // prevents panel from closing
+    
+        btn.closest(".decision-option-row")?.remove();
+    });
 
     // Close when clicking outside
     document.addEventListener("click", function (e) {
-    if (
-        decisionPanel.classList.contains("active") &&
-        !decisionPanel.contains(e.target) &&
-        !decisionBtn.contains(e.target)
-    ) {
+        if (!decisionPanel.classList.contains("active")) return;
+    
+        if (decisionPanel.contains(e.target)) return;
+        if (decisionBtn.contains(e.target)) return;
+    
         decisionPanel.classList.remove("active");
-    }
-});
+    });
 
     // Styles
     if (!document.getElementById('decision-panel-style')) {
